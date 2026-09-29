@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart School Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🏫</div>
+            <div>
+                <h2>Smart School</h2>
+                <span>Tracker</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+
+            <button class="menu-item active" onclick="showSection('dashboard', this)">
+                <span>🏠</span>
+                Dashboard
+            </button>
+
+            <button class="menu-item" onclick="showSection('students', this)">
+                <span>👨‍🎓</span>
+                Students
+            </button>
+
+            <button class="menu-item" onclick="showSection('attendance', this)">
+                <span>📅</span>
+                Attendance
+            </button>
+
+            <button class="menu-item" onclick="showSection('notifications', this)">
+                <span>🔔</span>
+                Notifications
+            </button>
+
+            <button class="menu-item" onclick="showSection('fees', this)">
+                <span>💰</span>
+                Fees & Payments
+            </button>
+
+            <button class="menu-item" onclick="showSection('vendors', this)">
+                <span>🏪</span>
+                Vendors
+            </button>
+
+            <button class="menu-item" onclick="showSection('purchases', this)">
+                <span>🛒</span>
+                Purchases
+            </button>
+
+            <button class="menu-item" onclick="showSection('budget', this)">
+                <span>💵</span>
+                Budget
+            </button>
+
+            <button class="menu-item" onclick="showSection('reports', this)">
+                <span>📊</span>
+                Reports
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-box">
+                <div class="avatar">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>School Admin</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p id="pageSubtitle">Welcome to Smart School Tracker</p>
+            </div>
+
+            <div class="top-actions">
+                <button class="notification-btn" onclick="showSection('notifications')">
+                    🔔
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="profile">
+                    <div class="avatar">A</div>
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Principal</small>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page-section active-section">
+
+            <div class="welcome">
+                <div>
+                    <h2>Good Morning, Admin 👋</h2>
+                    <p>Here's what's happening in your school today.</p>
+                </div>
+
+                <button class="primary-btn" onclick="showSection('students')">
+                    + Add Student
+                </button>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">👨‍🎓</div>
+                    <div>
+                        <span>Total Students</span>
+                        <h2 id="studentCount">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✅</div>
+                    <div>
+                        <span>Present Today</span>
+                        <h2 id="presentCount">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">❌</div>
+                    <div>
+                        <span>Absent Today</span>
+                        <h2 id="absentCount">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">💰</div>
+                    <div>
+                        <span>Fee Collected</span>
+                        <h2 id="feeCollected">₹0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Recent Students</h3>
+                            <p>Latest registered students</p>
+                        </div>
+
+                        <button class="text-btn"
+                                onclick="showSection('students')">
+                            View All
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Grade</th>
+                                <th>Parent</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="recentStudents">
+                            <tr>
+                                <td colspan="4" class="empty">
+                                    Loading students...
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Quick Actions</h3>
+                            <p>Frequently used operations</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+
+                        <button onclick="showSection('students')">
+                            👨‍🎓
+                            <span>Add Student</span>
+                        </button>
+
+                        <button onclick="showSection('attendance')">
+                            📅
+                            <span>Mark Attendance</span>
+                        </button>
+
+                        <button onclick="showSection('fees')">
+                            💰
+                            <span>Create Invoice</span>
+                        </button>
+
+                        <button onclick="showSection('reports')">
+                            📊
+                            <span>View Reports</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STUDENTS ================= -->
+
+        <section id="students" class="page-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Student Management</h2>
+                    <p>Add, view and manage students</p>
+                </div>
+
+                <button class="primary-btn" onclick="openStudentForm()">
+                    + Add Student
+                </button>
+            </div>
+
+
+            <div id="studentForm" class="form-panel hidden">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Add New Student</h3>
+                        <p>Enter student and parent details</p>
+                    </div>
+
+                    <button class="close-btn" onclick="closeStudentForm()">✕</button>
+                </div>
+
+                <form onsubmit="addStudent(event)">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Student Name</label>
+                            <input id="studentName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input id="studentEmail" type="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input id="studentPhone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <input id="studentGrade" placeholder="Example: 10-A" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Parent Name</label>
+                            <input id="parentName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Parent Phone</label>
+                            <input id="parentPhone" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button"
+                                class="secondary-btn"
+                                onclick="closeStudentForm()">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="primary-btn">
+                            Save Student
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>All Students</h3>
+                        <p id="studentTableCount">Loading...</p>
+                    </div>
+
+                    <button class="secondary-btn"
+                            onclick="loadStudents()">
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Email</th>
+                            <th>Grade</th>
+                            <th>Parent</th>
+                            <th>Phone</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="studentTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ATTENDANCE ================= -->
+
+        <section id="attendance" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Attendance Management</h2>
+                    <p>Mark and monitor student attendance</p>
+                </div>
+
+                <button class="primary-btn"
+                        onclick="openAttendanceForm()">
+                    + Mark Attendance
+                </button>
+
+            </div>
+
+
+            <div id="attendanceForm" class="form-panel hidden">
+
+                <div class="panel-header">
+                    <h3>Mark Attendance</h3>
+
+                    <button class="close-btn"
+                            onclick="closeAttendanceForm()">✕</button>
+                </div>
+
+                <form onsubmit="markAttendance(event)">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Student ID</label>
+                            <input id="attendanceStudentId"
+                                   type="number"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input id="attendanceDate"
+                                   type="date"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status</label>
+
+                            <select id="attendanceStatus" required>
+                                <option value="">Select Status</option>
+                                <option value="PRESENT">Present</option>
+                                <option value="ABSENT">Absent</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button type="button"
+                                class="secondary-btn"
+                                onclick="closeAttendanceForm()">
+                            Cancel
+                        </button>
+
+                        <button type="submit"
+                                class="primary-btn">
+                            Save Attendance
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">📅</div>
+                    <div>
+                        <span>Total Records</span>
+                        <h2 id="attendanceTotal">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✅</div>
+                    <div>
+                        <span>Present</span>
+                        <h2 id="attendancePresent">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">❌</div>
+                    <div>
+                        <span>Absent</span>
+                        <h2 id="attendanceAbsent">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">📊</div>
+                    <div>
+                        <span>Attendance %</span>
+                        <h2 id="attendancePercentage">0%</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Attendance Records</h3>
+                    </div>
+
+                    <button class="secondary-btn"
+                            onclick="loadAttendance()">
+                        ↻ Refresh
+                    </button>
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student ID</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="attendanceTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NOTIFICATIONS ================= -->
+
+        <section id="notifications" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Parent Notifications</h2>
+                    <p>Absence notification history</p>
+                </div>
+
+                <button class="secondary-btn"
+                        onclick="loadNotifications()">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student ID</th>
+                            <th>Parent Phone</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                            <th>Sent At</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="notificationTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEES ================= -->
+
+        <section id="fees" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Fees & Payments</h2>
+                    <p>Manage tuition invoices and payments</p>
+                </div>
+
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">🧾</div>
+                    <div>
+                        <span>Total Invoices</span>
+                        <h2 id="invoiceCount">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">💰</div>
+                    <div>
+                        <span>Total Collected</span>
+                        <h2 id="totalCollected">₹0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">⏳</div>
+                    <div>
+                        <span>Pending</span>
+                        <h2 id="pendingFees">₹0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Invoices</h3>
+                    </div>
+
+                    <button class="secondary-btn"
+                            onclick="loadInvoices()">
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Invoice No.</th>
+                            <th>Student ID</th>
+                            <th>Amount</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="invoiceTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= VENDORS ================= -->
+
+        <section id="vendors" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Vendor Management</h2>
+                    <p>Manage school suppliers and vendors</p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>Vendors</h3>
+
+                    <button class="secondary-btn"
+                            onclick="loadVendors()">
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vendor</th>
+                            <th>Contact Person</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="vendorTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PURCHASES ================= -->
+
+        <section id="purchases" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Purchases</h2>
+                    <p>Track school purchases and expenses</p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>Purchase Records</h3>
+
+                    <button class="secondary-btn"
+                            onclick="loadPurchases()">
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vendor ID</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="purchaseTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BUDGET ================= -->
+
+        <section id="budget" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Budget Management</h2>
+                    <p>Monitor school budget and expenses</p>
+                </div>
+
+                <button class="secondary-btn"
+                        onclick="loadBudgets()">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Department</th>
+                            <th>Budget</th>
+                            <th>Actual Expense</th>
+                            <th>Year</th>
+                            <th>Utilization</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="budgetTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REPORTS ================= -->
+
+        <section id="reports" class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Reports & Analytics</h2>
+                    <p>School performance overview</p>
+                </div>
+
+                <button class="secondary-btn"
+                        onclick="loadReports()">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="report-grid">
+
+                <div class="report-card">
+                    <span>📅</span>
+                    <h3>Attendance</h3>
+                    <strong id="reportAttendance">0%</strong>
+                    <p>Overall attendance</p>
+                </div>
+
+                <div class="report-card">
+                    <span>💰</span>
+                    <h3>Fee Collection</h3>
+                    <strong id="reportFees">₹0</strong>
+                    <p>Total collected</p>
+                </div>
+
+                <div class="report-card">
+                    <span>🛒</span>
+                    <h3>Expenses</h3>
+                    <strong id="reportExpenses">₹0</strong>
+                    <p>Total expenses</p>
+                </div>
+
+                <div class="report-card">
+                    <span>📈</span>
+                    <h3>Profit / Loss</h3>
+                    <strong id="reportProfit">₹0</strong>
+                    <p>Net result</p>
+                </div>
+
+            </div>
+
+
+            <div class="panel report-summary">
+
+                <h3>Financial Summary</h3>
+
+                <div class="summary-row">
+                    <span>Total Income</span>
+                    <strong id="reportIncome">₹0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Total Expense</span>
+                    <strong id="reportExpense">₹0</strong>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Profit / Loss</span>
+                    <strong id="reportProfit2">₹0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
